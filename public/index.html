@@ -14,7 +14,7 @@
 
   <title>Budget Tracker</title>
 </head>
-<body>
+<body onload="initApp()">
   <div class="wrapper">
     <div class="total">
       <div class="total">Your total is: $<span id="total">0</span></div>
@@ -45,5 +45,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
+  <script>
+    async function initApp(){
+      console.log("Initializing app");
+      if(!navigator.serviceWorker){
+        console.log("No service worker, quitting");
+        return;
+      }  
+
+      // On window completion of load, register service worker
+      navigator.serviceWorker.register("service-worker.js");
+
+      const reg = await navigator.serviceWorker.ready;
+      console.log(`.. serviceWorker registered & ready: `, reg);
+    }
+  </script>
 </body>
 </html>
