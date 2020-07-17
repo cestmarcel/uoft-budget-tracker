@@ -75,7 +75,7 @@
       }  
 
       // On window completion of load, register service worker
-      navigator.serviceWorker.register("./assets/js/service-worker.js");
+      navigator.serviceWorker.register("./assets/js/service-worker.js", { scope: '/' });
 
       const reg = await navigator.serviceWorker.ready;
       console.log(`.. serviceWorker registered & ready: `, reg);
